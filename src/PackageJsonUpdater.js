@@ -6,13 +6,11 @@ export class PackageJsonUpdater {
     /**
      * @param {string} projectName
      * @param {string} loglevel
-     * @param {string} outputPath
      * @param {string} packageJsonPath
      */
-    constructor(projectName, loglevel, outputPath, packageJsonPath) {
+    constructor(projectName, loglevel, packageJsonPath) {
         this.projectName = projectName;
         this.loglevel = loglevel;
-        this.outputPath = outputPath;
         this.packageJsonPath = packageJsonPath;
 
         this.editPackageJson = this.editPackageJson.bind(this);
@@ -47,7 +45,6 @@ export class PackageJsonUpdater {
                 const json = JSON.parse(data);
 
                 json.name = this.projectName;
-                json.config.output = this.outputPath;
 
                 resolve(json);
             } catch (error) {

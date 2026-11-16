@@ -1,7 +1,6 @@
 import path from "path";
 import TerserPlugin from "terser-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import packageJson from "./package.json" with { type: "json" };
 
 /**
  * @param {string} env
@@ -33,7 +32,7 @@ export default function (env, argv) {
             lazysizes: ["./src/scripts/lazysizes"],
         },
         output: {
-            path: path.resolve(`${packageJson.config.output}/`),
+            path: path.resolve("__OUTPUT_PATH__"),
             publicPath: "/project/frontend/",
         },
         optimization: {

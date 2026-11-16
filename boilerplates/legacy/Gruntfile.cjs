@@ -1,13 +1,11 @@
-const packageJson = require("./package.json");
-
 module.exports = function (grunt) {
     grunt.initConfig({
         copy: {
             cssGhostInspector: {
                 expand: true,
-                cwd: `${packageJson.config.output}/`,
+                cwd: "__OUTPUT_PATH__/",
                 src: ["*.css", "!*.ghost-inspector.css"],
-                dest: `${packageJson.config.output}/`,
+                dest: "__OUTPUT_PATH__/",
                 options: {
                     process(content) {
                         content = content.replace(/font-display:optional/g, "font-display:block");
@@ -26,7 +24,7 @@ module.exports = function (grunt) {
                 options: {
                     length: 8,
                     algorithm: "md5",
-                    baseDir: `./${packageJson.config.output}/`,
+                    baseDir: "./__OUTPUT_PATH__/",
                     assets: ["*", "!**/*.*.*", "!manifest.json", "*.ghost-inspector.*"],
                     deleteOriginals: true,
                     jsonOutput: true,
@@ -34,7 +32,7 @@ module.exports = function (grunt) {
                     outputDir: "",
                     clearOutputDir: true,
                 },
-                src: [`${packageJson.config.output}/*.css`, `${packageJson.config.output}/*.js`],
+                src: ["__OUTPUT_PATH__/*.css", "__OUTPUT_PATH__/*.js"],
             },
         },
     });

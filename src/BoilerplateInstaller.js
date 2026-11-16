@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import fs from 'node:fs';
 import path from 'node:path';
 import { BOILERPLATE_PATH } from './constants.js';
+import { OutputPathReplacer } from './OutputPathReplacer.js';
 import { PackageJsonUpdater } from './PackageJsonUpdater.js';
 
 export class BoilerplateInstaller {
@@ -20,8 +21,11 @@ export class BoilerplateInstaller {
         console.log(chalk.yellow('Copying files from boilerplate'));
         this.#copyBoilerplateFiles(installDirPath, installOptions.boilerplate);
 
+        console.log(chalk.yellow('Setting output path'));
+        new OutputPathReplacer(path.join(BOILERPLATE_PATH, installOptions.boilerplate), installDirPath, installOptions.outputPath).execute();
+
         console.log(chalk.yellow('Installing packages'));
-        await new PackageJsonUpdater(installOptions.projectName, installOptions.logLevel, installOptions.outputPath, path.join(installDirPath, 'package.json')).execute();
+        await new PackageJsonUpdater(installOptions.projectName, installOptions.logLevel, path.join(installDirPath, 'package.json')).execute();
     }
 
     /**

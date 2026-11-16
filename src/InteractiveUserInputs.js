@@ -66,7 +66,17 @@ export class InteractiveUserInputs {
      * @returns {Promise<string>}
      */
     #askOutputPath() {
-        return input({ message: 'What should the output path be?', default: this.defaultOutputPath });
+        return input({
+            message: 'What should the output path be?',
+            default: this.defaultOutputPath,
+            validate: (value) => {
+                if (!/^[\w./-]+$/.test(value)) {
+                    return 'The output path may only contain letters, numbers, ".", "_", "-" and "/"';
+                }
+
+                return true;
+            },
+        });
     }
 
     /**
