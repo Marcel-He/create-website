@@ -84,7 +84,7 @@ export class InteractiveUserInputs {
 
                 };
             }),
-            default: 'ecoma',
+            default: 'legacy',
         });
     }
 
