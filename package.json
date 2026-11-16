@@ -2,7 +2,7 @@
   "name": "@ryze-digital/create-website",
   "description": "Sets up build tools and default folder structure",
   "license": "UNLICENSED",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "RYZE Digital GmbH <kontakt@ryze-digital.de> (https://www.ryze-digital.de/)",
   "main": "index.js",
   "type": "module",
@@ -11,15 +11,16 @@
     "create-website": "index.js"
   },
   "scripts": {
-    "lint": "eslint src/**"
+    "lint": "eslint src ./*.js",
+    "lint-fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "@inquirer/core": "^10.2.0",
     "@inquirer/prompts": "^7.8.4",
-    "chalk": "^5.6.1"
+    "chalk": "^5.6.2"
   },
   "devDependencies": {
-    "@ryze-digital/eslint-config-website": "^1.0.0",
+    "@ryze-digital/eslint-config-website": "^1.0.1",
     "@types/node": "^20.19.13"
   },
   "engines": {
