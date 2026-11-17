@@ -1,9 +1,9 @@
-import chalk from 'chalk';
-import fs from 'node:fs';
-import path from 'node:path';
-import { BOILERPLATE_PATH } from './constants.js';
-import { OutputPathReplacer } from './OutputPathReplacer.js';
-import { PackageJsonUpdater } from './PackageJsonUpdater.js';
+import chalk from "chalk";
+import fs from "node:fs";
+import path from "node:path";
+import { BOILERPLATE_PATH } from "./constants.js";
+import { OutputPathReplacer } from "./OutputPathReplacer.js";
+import { PackageJsonUpdater } from "./PackageJsonUpdater.js";
 
 export class BoilerplateInstaller {
     /**
@@ -18,14 +18,22 @@ export class BoilerplateInstaller {
     async install(installDirPath, installOptions) {
         this.#preInstallStep(installDirPath);
 
-        console.log(chalk.yellow('Copying files from boilerplate'));
+        console.log(chalk.yellow("Copying files from boilerplate"));
         this.#copyBoilerplateFiles(installDirPath, installOptions.boilerplate);
 
-        console.log(chalk.yellow('Setting output path'));
-        new OutputPathReplacer(path.join(BOILERPLATE_PATH, installOptions.boilerplate), installDirPath, installOptions.outputPath).execute();
+        console.log(chalk.yellow("Setting output path"));
+        new OutputPathReplacer(
+            path.join(BOILERPLATE_PATH, installOptions.boilerplate),
+            installDirPath,
+            installOptions.outputPath,
+        ).execute();
 
-        console.log(chalk.yellow('Installing packages'));
-        await new PackageJsonUpdater(installOptions.projectName, installOptions.logLevel, path.join(installDirPath, 'package.json')).execute();
+        console.log(chalk.yellow("Installing packages"));
+        await new PackageJsonUpdater(
+            installOptions.projectName,
+            installOptions.logLevel,
+            path.join(installDirPath, "package.json"),
+        ).execute();
     }
 
     /**
@@ -33,10 +41,10 @@ export class BoilerplateInstaller {
      * @returns {void}
      */
     #preInstallStep(installDirPath) {
-        const gitKeepFilePath = path.join(installDirPath, '.gitkeep');
+        const gitKeepFilePath = path.join(installDirPath, ".gitkeep");
 
         if (fs.existsSync(gitKeepFilePath)) {
-            console.log(chalk.yellow('Deleting exisiting .gitkeep file'));
+            console.log(chalk.yellow("Deleting exisiting .gitkeep file"));
             fs.unlinkSync(gitKeepFilePath);
         }
     }

@@ -1,6 +1,6 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { OUTPUT_PATH_PLACEHOLDER } from './constants.js';
+import fs from "node:fs";
+import path from "node:path";
+import { OUTPUT_PATH_PLACEHOLDER } from "./constants.js";
 
 export class OutputPathReplacer {
     /**
@@ -44,6 +44,6 @@ export class OutputPathReplacer {
             return;
         }
 
-        fs.writeFileSync(filePath, content.toString('utf-8').replaceAll(OUTPUT_PATH_PLACEHOLDER, this.outputPath));
+        fs.writeFileSync(filePath, content.toString("utf-8").replaceAll(OUTPUT_PATH_PLACEHOLDER, this.outputPath));
     }
 }

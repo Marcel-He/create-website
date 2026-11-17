@@ -1,9 +1,9 @@
-import { confirm, input, select } from '@inquirer/prompts';
-import fs from 'node:fs';
-import { BOILERPLATE_PATH } from './constants.js';
+import { confirm, input, select } from "@inquirer/prompts";
+import fs from "node:fs";
+import { BOILERPLATE_PATH } from "./constants.js";
 
 export class InteractiveUserInputs {
-    static #EXAMPLE_PROJECT_NAME = '@namespace/project-name';
+    static #EXAMPLE_PROJECT_NAME = "@namespace/project-name";
 
     /**
      * @typedef {object} InstallerUserResponses
@@ -16,7 +16,7 @@ export class InteractiveUserInputs {
      * @param {string} defaultProjectName
      * @param {string} defaultOutputPath
      */
-    constructor(defaultProjectName = InteractiveUserInputs.#EXAMPLE_PROJECT_NAME, defaultOutputPath = 'build') {
+    constructor(defaultProjectName = InteractiveUserInputs.#EXAMPLE_PROJECT_NAME, defaultOutputPath = "build") {
         this.defaultProjectName = defaultProjectName;
         this.defaultOutputPath = defaultOutputPath;
     }
@@ -50,11 +50,11 @@ export class InteractiveUserInputs {
      */
     #askProjectName() {
         return input({
-            message: 'What should the project name be?',
+            message: "What should the project name be?",
             default: this.defaultProjectName,
             validate: (value) => {
                 if (value === InteractiveUserInputs.#EXAMPLE_PROJECT_NAME) {
-                    return 'Please enter a proper project name';
+                    return "Please enter a proper project name";
                 }
 
                 return true;
@@ -67,7 +67,7 @@ export class InteractiveUserInputs {
      */
     #askOutputPath() {
         return input({
-            message: 'What should the output path be?',
+            message: "What should the output path be?",
             default: this.defaultOutputPath,
             validate: (value) => {
                 if (!/^[\w./-]+$/.test(value)) {
@@ -86,15 +86,14 @@ export class InteractiveUserInputs {
         const boilerplateNames = this.#getBoilerplateNames();
 
         return select({
-            message: 'What boilerplate do you want to use?',
+            message: "What boilerplate do you want to use?",
             choices: boilerplateNames.map((name) => {
                 return {
                     name: this.#formatBoilerplateName(name),
                     value: name,
-
                 };
             }),
-            default: 'legacy',
+            default: "legacy",
         });
     }
 
@@ -102,8 +101,9 @@ export class InteractiveUserInputs {
      * @returns {string[]}
      */
     #getBoilerplateNames() {
-        return fs.readdirSync(BOILERPLATE_PATH)
-            .sort(new Intl.Collator('en', { numeric: true, sensitivity: 'base' }).compare);
+        return fs
+            .readdirSync(BOILERPLATE_PATH)
+            .sort(new Intl.Collator("en", { numeric: true, sensitivity: "base" }).compare);
     }
 
     /**
@@ -113,7 +113,7 @@ export class InteractiveUserInputs {
     #formatBoilerplateName(name) {
         return name
             .toLowerCase()
-            .replace(/_/g, ' ')
+            .replace(/_/g, " ")
             .replace(/\b\w/g, (char) => {
                 return char.toUpperCase();
             });

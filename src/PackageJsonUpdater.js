@@ -1,6 +1,6 @@
-import chalk from 'chalk';
-import child_process from 'node:child_process';
-import fs from 'node:fs';
+import chalk from "chalk";
+import child_process from "node:child_process";
+import fs from "node:fs";
 
 export class PackageJsonUpdater {
     /**
@@ -32,7 +32,7 @@ export class PackageJsonUpdater {
      * @returns {Promise<string>}
      */
     readPackageJson() {
-        return fs.promises.readFile(this.packageJsonPath, 'utf-8');
+        return fs.promises.readFile(this.packageJsonPath, "utf-8");
     }
 
     /**
@@ -65,21 +65,24 @@ export class PackageJsonUpdater {
      * @returns {void}
      */
     updatePackageVersions() {
-        console.log(chalk.yellow('Running npm-check-updates to update package versions'));
-        child_process.spawnSync('npm', [
-            'install',
-            '--no-save',
-            'npm-check-updates@latest',
-        ], { stdio: 'inherit' });
-        child_process.spawnSync('npx', [
-            'npm-check-updates',
-            '--upgrade',
-            '--target', 'minor',
-            '--packageFile', 'package.json',
-            '--loglevel', this.loglevel,
-        ], { stdio: 'inherit' });
+        console.log(chalk.yellow("Running npm-check-updates to update package versions"));
+        child_process.spawnSync("npm", ["install", "--no-save", "npm-check-updates@latest"], { stdio: "inherit" });
+        child_process.spawnSync(
+            "npx",
+            [
+                "npm-check-updates",
+                "--upgrade",
+                "--target",
+                "minor",
+                "--packageFile",
+                "package.json",
+                "--loglevel",
+                this.loglevel,
+            ],
+            { stdio: "inherit" },
+        );
 
-        console.log(chalk.yellow('Running npm install'));
-        child_process.spawnSync('npm', ['install', '--loglevel', this.loglevel], { stdio: 'inherit' });
+        console.log(chalk.yellow("Running npm install"));
+        child_process.spawnSync("npm", ["install", "--loglevel", this.loglevel], { stdio: "inherit" });
     }
 }
