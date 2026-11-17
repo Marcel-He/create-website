@@ -2,6 +2,7 @@ import chalk from "chalk";
 import fs from "node:fs";
 import path from "node:path";
 import { BOILERPLATE_PATH } from "./constants.js";
+import { OptionalFeatureRemover } from "./OptionalFeatureRemover.js";
 import { OutputPathReplacer } from "./OutputPathReplacer.js";
 import { PackageJsonUpdater } from "./PackageJsonUpdater.js";
 
@@ -12,6 +13,7 @@ export class BoilerplateInstaller {
      * @param {string} installOptions.projectName
      * @param {string} installOptions.outputPath
      * @param {string} installOptions.boilerplate
+     * @param {boolean} installOptions.useLazysizes
      * @param {string} installOptions.logLevel
      * @returns {Promise<void>}
      */
@@ -27,6 +29,16 @@ export class BoilerplateInstaller {
             installDirPath,
             installOptions.outputPath,
         ).execute();
+
+        const disabledFeatures = installOptions.useLazysizes ? [] : ["lazysizes"];
+
+        if (disabledFeatures.length > 0) {
+            console.log(chalk.yellow(`Removing optional features: ${disabledFeatures.join(", ")}`));
+        }
+
+        new OptionalFeatureRemover(path.join(BOILERPLATE_PATH, installOptions.boilerplate), installDirPath).execute(
+            disabledFeatures,
+        );
 
         console.log(chalk.yellow("Installing packages"));
         await new PackageJsonUpdater(

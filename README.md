@@ -19,7 +19,8 @@ Open the folder in which you want to set up a new project. In Ecoma projects (fo
 npm init @ryze-digital/website@latest @namespace/project-name
 ```
 
-The installer will then ask you for the project name, the boilerplate and the output directory.
+The installer will then ask you for the project name, the boilerplate, the output directory and whether
+[lazysizes](https://github.com/aFarkas/lazysizes) should be used.
 
 ## Options
 
@@ -44,6 +45,12 @@ the following error:
 
 To fix this, you can set `deleteOriginals` to `false` for the `cacheBust` task inside `Gruntfile.cjs`. Please note that
 in this case the unhashed build files will remain in the output directory.
+
+### Lazysizes
+
+By default, the boilerplate ships with [lazysizes](https://github.com/aFarkas/lazysizes). If you answer the question
+`Do you want to use lazysizes?` with no, the `lazysizes` package is not installed, `src/scripts/lazysizes.js` is not
+copied and the lazysizes specific entry and chunk configuration is removed from `webpack.config.js`.
 
 ### Loglevel
 

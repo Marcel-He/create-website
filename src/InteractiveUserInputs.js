@@ -10,6 +10,7 @@ export class InteractiveUserInputs {
      * @property {string} projectName
      * @property {string} boilerplate
      * @property {string} outputPath
+     * @property {boolean} useLazysizes
      */
 
     /**
@@ -28,11 +29,13 @@ export class InteractiveUserInputs {
         const projectName = await this.#askProjectName();
         const boilerplate = await this.#askBoilerplate();
         const outputPath = await this.#askOutputPath();
+        const useLazysizes = await this.#askUseLazysizes();
 
         return {
             projectName,
             boilerplate,
             outputPath,
+            useLazysizes,
         };
     }
 
@@ -77,6 +80,13 @@ export class InteractiveUserInputs {
                 return true;
             },
         });
+    }
+
+    /**
+     * @returns {Promise<boolean>}
+     */
+    #askUseLazysizes() {
+        return this.askForConfirmation("Do you want to use lazysizes?", true);
     }
 
     /**

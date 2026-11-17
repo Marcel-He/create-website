@@ -29,7 +29,9 @@ export default function (env, argv) {
         devtool: false,
         entry: {
             main: ["./src/scripts/main"],
+            // feature:lazysizes:start
             lazysizes: ["./src/scripts/lazysizes"],
+            // feature:lazysizes:end
         },
         output: {
             path: path.resolve("__OUTPUT_PATH__"),
@@ -40,11 +42,18 @@ export default function (env, argv) {
                 cacheGroups: {
                     defaultVendors: {
                         test: (mod) => {
-                            // Only include all node_modules excluding lazysizes
-                            if (!mod.context.includes("node_modules") || mod.context.includes("lazysizes")) {
+                            // Only include node_modules
+                            if (!mod.context.includes("node_modules")) {
                                 return false;
                             }
 
+                            // feature:lazysizes:start
+                            // Excluding lazysizes, because it has its own entry chunk and must not be moved to vendor
+                            if (mod.context.includes("lazysizes")) {
+                                return false;
+                            }
+
+                            // feature:lazysizes:end
                             return true;
                         },
                         name: "vendor",
