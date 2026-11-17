@@ -36,7 +36,7 @@ async function main() {
         ...installerResponses,
         logLevel: parsedArgs.logLevel,
     });
-    console.info(chalk.green("Adventure ready"));
+    console.info(chalk.green("Your adventure is ready"));
 }
 
 try {
