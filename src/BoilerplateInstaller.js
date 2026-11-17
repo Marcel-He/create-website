@@ -14,6 +14,7 @@ export class BoilerplateInstaller {
      * @param {string} installOptions.outputPath
      * @param {string} installOptions.boilerplate
      * @param {boolean} installOptions.useLazysizes
+     * @param {boolean} installOptions.useCkeditorStyles
      * @param {string} installOptions.logLevel
      * @returns {Promise<void>}
      */
@@ -30,7 +31,7 @@ export class BoilerplateInstaller {
             installOptions.outputPath,
         ).execute();
 
-        const disabledFeatures = installOptions.useLazysizes ? [] : ["lazysizes"];
+        const disabledFeatures = this.#getDisabledFeatures(installOptions);
 
         if (disabledFeatures.length > 0) {
             console.log(chalk.yellow(`Removing optional features: ${disabledFeatures.join(", ")}`));
@@ -46,6 +47,23 @@ export class BoilerplateInstaller {
             installOptions.logLevel,
             path.join(installDirPath, "package.json"),
         ).execute();
+    }
+
+    /**
+     * @param {object} installOptions
+     * @param {boolean} installOptions.useLazysizes
+     * @param {boolean} installOptions.useCkeditorStyles
+     * @returns {string[]} names of the optional features (see OPTIONAL_FEATURES) the user opted out of
+     */
+    #getDisabledFeatures(installOptions) {
+        const featureUsage = {
+            lazysizes: installOptions.useLazysizes,
+            ckeditor: installOptions.useCkeditorStyles,
+        };
+
+        return Object.keys(featureUsage).filter((featureName) => {
+            return !featureUsage[featureName];
+        });
     }
 
     /**

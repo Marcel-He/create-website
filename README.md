@@ -19,8 +19,8 @@ Open the folder in which you want to set up a new project. In Ecoma projects (fo
 npm init @ryze-digital/website@latest @namespace/project-name
 ```
 
-The installer will then ask you for the project name, the boilerplate, the output directory and whether
-[lazysizes](https://github.com/aFarkas/lazysizes) should be used.
+The installer will then ask you for the project name, the boilerplate, the output directory and which optional
+features you want to use.
 
 ## Options
 
@@ -51,6 +51,12 @@ in this case the unhashed build files will remain in the output directory.
 By default, the boilerplate ships with [lazysizes](https://github.com/aFarkas/lazysizes). If you answer the question
 `Do you want to use lazysizes?` with no, the `lazysizes` package is not installed, `src/scripts/lazysizes.js` is not
 copied and the lazysizes specific entry and chunk configuration is removed from `webpack.config.js`.
+
+### CKEditor styles
+
+By default, the boilerplate ships with `src/styles/ckeditor.scss`, a separate Sass entry which compiles to its own
+stylesheet for the CKEditor. If you answer the question `Do you need a separate Sass entry for CKEditor?` with no, the
+file is not copied.
 
 ### Loglevel
 

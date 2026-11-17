@@ -16,6 +16,10 @@ const OPTIONAL_FEATURES = {
         files: ["src/scripts/lazysizes.js"],
         packages: ["lazysizes"],
     },
+    ckeditor: {
+        files: ["src/styles/ckeditor.scss"],
+        packages: [],
+    },
 };
 
 export { BOILERPLATE_PATH, OPTIONAL_FEATURES, OUTPUT_PATH_PLACEHOLDER };

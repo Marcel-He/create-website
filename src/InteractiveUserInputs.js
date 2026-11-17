@@ -11,6 +11,7 @@ export class InteractiveUserInputs {
      * @property {string} boilerplate
      * @property {string} outputPath
      * @property {boolean} useLazysizes
+     * @property {boolean} useCkeditorStyles
      */
 
     /**
@@ -30,12 +31,14 @@ export class InteractiveUserInputs {
         const boilerplate = await this.#askBoilerplate();
         const outputPath = await this.#askOutputPath();
         const useLazysizes = await this.#askUseLazysizes();
+        const useCkeditorStyles = await this.#askUseCkeditorStyles();
 
         return {
             projectName,
             boilerplate,
             outputPath,
             useLazysizes,
+            useCkeditorStyles,
         };
     }
 
@@ -87,6 +90,13 @@ export class InteractiveUserInputs {
      */
     #askUseLazysizes() {
         return this.askForConfirmation("Do you want to use lazysizes?", true);
+    }
+
+    /**
+     * @returns {Promise<boolean>}
+     */
+    #askUseCkeditorStyles() {
+        return this.askForConfirmation("Do you need a separate Sass entry for CKEditor?", true);
     }
 
     /**
