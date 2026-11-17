@@ -38,19 +38,6 @@ export default function (env, argv) {
         optimization: {
             splitChunks: {
                 cacheGroups: {
-                    lazysizes: {
-                        test: (mod) => {
-                            // Excluding all except lazysizes
-                            if (!mod.context.includes("node_modules/lazysizes")) {
-                                return false;
-                            }
-
-                            return true;
-                        },
-                        name: "lazysizes",
-                        chunks: "all",
-                        enforce: true,
-                    },
                     defaultVendors: {
                         test: (mod) => {
                             // Only include all node_modules excluding lazysizes
