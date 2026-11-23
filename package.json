@@ -17,8 +17,8 @@
     "lint-fix:scripts": "prettier src ./*.js --write && npm run lint:scripts -- --fix"
   },
   "dependencies": {
-    "@inquirer/core": "^12.1.0",
-    "@inquirer/prompts": "^8.8.0",
+    "@inquirer/core": "^12.1.1",
+    "@inquirer/prompts": "^8.8.1",
     "chalk": "^6.0.1"
   },
   "devDependencies": {
