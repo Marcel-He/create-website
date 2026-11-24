@@ -26,7 +26,7 @@ Used as `name` in the `package.json`, e.g. `@namespace/project-name`.
 
 ### Boilerplate
 
-Currently, `legacy` is the only one available. A new boilerplate is in development.
+Currently, `legacy` is the only boilerplate available. A new one is currently under development.
 
 ### Output directory
 
@@ -40,15 +40,16 @@ The output path has to be relative to the folder in which you run the command.
 
 ### Lazysizes
 
-By default, the boilerplate ships with [lazysizes](https://github.com/aFarkas/lazysizes). If you answer the question
-`Do you want to use lazysizes?` with no, the `lazysizes` package is not installed, `src/scripts/lazysizes.js` is not
-copied and the lazysizes specific entry and chunk configuration is removed from `webpack.config.js`.
+By default, the boilerplate ships with [lazysizes](https://github.com/aFarkas/lazysizes) for lazy loading and responsive images. If you answer the
+question `Do you want to use lazysizes?` with no, the `lazysizes` package will not be installed,
+`src/scripts/lazysizes.js` does not get created and the lazysizes specific entry and chunk configuration is removed
+from `webpack.config.js`.
 
 ### CKEditor styles
 
 By default, the boilerplate ships with `src/styles/ckeditor.scss`, a separate Sass entry which compiles to its own
-stylesheet for the CKEditor. If you answer the question `Do you need a separate Sass entry for CKEditor?` with no, the
-file is not copied.
+stylesheet for the [CKEditor](https://ckeditor.com/ckeditor-4/). If you answer the question
+`Do you need a separate Sass entry for CKEditor?` with no, the entry does not get created.
 
 ### Loglevel
 
