@@ -15,10 +15,7 @@ async function main() {
     const parsedArgs = new CliArgumentParser().parseArgs();
     const targetInstallDir = process.cwd();
 
-    const interactiveUserInputs = new InteractiveUserInputs(
-        parsedArgs.defaultProjectName,
-        parsedArgs.defaultOutputPath,
-    );
+    const interactiveUserInputs = new InteractiveUserInputs();
     const installerResponses = await interactiveUserInputs.askAllInstallerQuestions();
 
     if (fs.existsSync(path.join(targetInstallDir, "package.json"))) {

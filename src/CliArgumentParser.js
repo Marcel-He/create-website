@@ -4,8 +4,6 @@ import { parseArgs } from "node:util";
 export class CliArgumentParser {
     /**
      * @typedef {object} ParsedArguments
-     * @property {string|undefined} defaultProjectName
-     * @property {string|undefined} defaultOutputPath
      * @property {string|undefined} logLevel
      */
 
@@ -17,7 +15,6 @@ export class CliArgumentParser {
 
         try {
             parsedArgs = parseArgs({
-                allowPositionals: true,
                 options: {
                     loglevel: {
                         type: "string",
@@ -34,8 +31,6 @@ export class CliArgumentParser {
         }
 
         return {
-            defaultProjectName: parsedArgs.positionals[0],
-            defaultOutputPath: parsedArgs.positionals[1],
             logLevel: parsedArgs.values.loglevel,
         };
     }

@@ -15,15 +15,6 @@ export class InteractiveUserInputs {
      */
 
     /**
-     * @param {string|undefined} defaultProjectName
-     * @param {string} defaultOutputPath
-     */
-    constructor(defaultProjectName, defaultOutputPath = "build") {
-        this.defaultProjectName = defaultProjectName;
-        this.defaultOutputPath = defaultOutputPath;
-    }
-
-    /**
      * @returns {Promise<InstallerUserResponses>}
      */
     async askAllInstallerQuestions() {
@@ -57,7 +48,6 @@ export class InteractiveUserInputs {
     #askProjectName() {
         return input({
             message: `What should the project name be? (e.g. ${InteractiveUserInputs.#EXAMPLE_PROJECT_NAME})`,
-            default: this.defaultProjectName,
             validate: (value) => {
                 if (value.trim() === "" || value === InteractiveUserInputs.#EXAMPLE_PROJECT_NAME) {
                     return "Please enter a proper project name";
@@ -74,7 +64,7 @@ export class InteractiveUserInputs {
     #askOutputPath() {
         return input({
             message: "What should the output path be?",
-            default: this.defaultOutputPath,
+            default: "build",
             validate: (value) => {
                 if (!/^[\w./-]+$/.test(value)) {
                     return 'The output path may only contain letters, numbers, ".", "_", "-" and "/"';
