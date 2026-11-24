@@ -4,7 +4,6 @@ import chalk, { chalkStderr } from "chalk";
 import fs from "node:fs";
 import path from "node:path";
 import { BoilerplateInstaller } from "./src/BoilerplateInstaller.js";
-import { CliArgumentParser } from "./src/CliArgumentParser.js";
 import { ExitPromptError } from "@inquirer/core";
 import { InteractiveUserInputs } from "./src/InteractiveUserInputs.js";
 
@@ -12,7 +11,6 @@ import { InteractiveUserInputs } from "./src/InteractiveUserInputs.js";
  * @returns {Promise<void>}
  */
 async function main() {
-    const parsedArgs = new CliArgumentParser().parseArgs();
     const targetInstallDir = process.cwd();
 
     const interactiveUserInputs = new InteractiveUserInputs();
@@ -29,10 +27,7 @@ async function main() {
         }
     }
 
-    await new BoilerplateInstaller().install(targetInstallDir, {
-        ...installerResponses,
-        logLevel: parsedArgs.logLevel,
-    });
+    await new BoilerplateInstaller().install(targetInstallDir, installerResponses);
     console.info(chalk.green("Your adventure is ready"));
 }
 

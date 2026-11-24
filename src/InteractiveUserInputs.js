@@ -5,6 +5,8 @@ import { BOILERPLATE_PATH } from "./constants.js";
 export class InteractiveUserInputs {
     static #EXAMPLE_PROJECT_NAME = "@namespace/project-name";
 
+    static #LOG_LEVELS = ["silent", "error", "warn", "info", "verbose", "silly"];
+
     /**
      * @typedef {object} InstallerUserResponses
      * @property {string} projectName
@@ -12,6 +14,7 @@ export class InteractiveUserInputs {
      * @property {string} outputPath
      * @property {boolean} useLazysizes
      * @property {boolean} useCkeditorStyles
+     * @property {string} logLevel
      */
 
     /**
@@ -23,6 +26,7 @@ export class InteractiveUserInputs {
         const outputPath = await this.#askOutputPath();
         const useLazysizes = await this.#askUseLazysizes();
         const useCkeditorStyles = await this.#askUseCkeditorStyles();
+        const logLevel = await this.#askLogLevel();
 
         return {
             projectName,
@@ -30,6 +34,7 @@ export class InteractiveUserInputs {
             outputPath,
             useLazysizes,
             useCkeditorStyles,
+            logLevel,
         };
     }
 
@@ -87,6 +92,17 @@ export class InteractiveUserInputs {
      */
     #askUseCkeditorStyles() {
         return this.askForConfirmation("Do you need a separate Sass entry for CKEditor?", true);
+    }
+
+    /**
+     * @returns {Promise<string>}
+     */
+    #askLogLevel() {
+        return select({
+            message: "Which npm loglevel should be used during installation?",
+            choices: InteractiveUserInputs.#LOG_LEVELS,
+            default: "silent",
+        });
     }
 
     /**

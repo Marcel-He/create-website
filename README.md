@@ -52,9 +52,5 @@ file is not copied.
 
 ### Loglevel
 
-Loglevel can be changed to see more detail output during installation. By default, loglevel is `silent`. Allowed values
-are `error`, `warn`, `info`, `verbose` and `silly`.
-
-```sh
-npm init @ryze-digital/website@latest --loglevel error
-```
+The loglevel of the npm commands run during installation. By default, it is `silent`. Choose a more verbose level to see
+more details.
