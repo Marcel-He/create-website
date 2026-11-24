@@ -61,6 +61,15 @@
     "core-js": "^3.51.0",
     "lazysizes": "^5.3.2"
   },
+  "allowScripts": {
+    "gifsicle": true,
+    "jpegtran-bin": true,
+    "mozjpeg": true,
+    "optipng-bin": true,
+    "lightningcss-cli": true,
+    "@parcel/watcher": true,
+    "core-js": false
+  },
   "browserslist": [
     "> 0.5%",
     "not IE > 0"
