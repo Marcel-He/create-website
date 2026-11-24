@@ -66,11 +66,13 @@ export class PackageJsonUpdater {
      */
     updatePackageVersions() {
         console.log(chalk.yellow("Running npm-check-updates to update package versions"));
-        child_process.spawnSync("npm", ["install", "--no-save", "npm-check-updates@latest"], { stdio: "inherit" });
         child_process.spawnSync(
             "npx",
             [
-                "npm-check-updates",
+                "--yes",
+                "--loglevel",
+                this.loglevel,
+                "npm-check-updates@latest",
                 "--upgrade",
                 "--target",
                 "minor",
