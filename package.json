@@ -10,6 +10,11 @@
   "bin": {
     "create-website": "index.js"
   },
+  "files": [
+    "boilerplates",
+    "src",
+    "index.js"
+  ],
   "scripts": {
     "lint": "npm run lint:scripts",
     "lint:scripts": "prettier src ./*.js --check && eslint src ./*.js",
