@@ -10,17 +10,29 @@
   "bin": {
     "create-website": "index.js"
   },
+  "files": [
+    "boilerplates",
+    "src",
+    "index.js"
+  ],
   "scripts": {
-    "lint": "eslint src ./*.js",
-    "lint-fix": "npm run lint -- --fix"
+    "lint": "npm run lint:scripts",
+    "lint:scripts": "prettier src ./*.js --check && eslint src ./*.js",
+    "lint-fix": "npm run lint-fix:scripts",
+    "lint-fix:scripts": "prettier src ./*.js --write && npm run lint:scripts -- --fix"
   },
   "dependencies": {
-    "chalk": "^5.6.2",
-    "fs-extra": "^11.3.2",
-    "shelljs": "^0.8.5"
+    "@inquirer/core": "^12.1.1",
+    "@inquirer/prompts": "^8.8.1",
+    "chalk": "^6.0.1"
   },
   "devDependencies": {
-    "@ryze-digital/eslint-config-website": "^1.0.1"
+    "@ryze-digital/eslint-config-website": "^2.0.0",
+    "@ryze-digital/prettier-config-website": "^2.0.0",
+    "@types/node": "^24.19.2"
+  },
+  "engines": {
+    "node": ">=24.15"
   },
   "keywords": [
     "initializer",
