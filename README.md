@@ -7,7 +7,8 @@
 - [Node.js](https://nodejs.org/) and npm in the versions defined under `engines` in the `package.json` of the chosen
   boilerplate
 - [Dart Sass](https://sass-lang.com/dart-sass/) installed globally, so that the `sass` command is available. It is
-  intentionally not installed as a project dependency.
+  intentionally not installed as a project dependency. If you can not install it as a global dependency, we recommend
+  using [sass-embedded](https://www.npmjs.com/package/sass-embedded).
 
 ## Usage
 
