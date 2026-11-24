@@ -12,39 +12,31 @@
 ## Usage
 
 Open the folder in which you want to set up a new project. In Ecoma projects (for example) this is
-`/public/project/frontend`. **The folder needs to be empty.** Run the following script and replace
-`@namespace/project-name` with the name of your project.
+`/public/project/frontend`. **The folder needs to be empty.** Run the following script:
 
 ```sh
-npm init @ryze-digital/website@latest @namespace/project-name
+npm init @ryze-digital/website@latest
 ```
-
-The installer will then ask you for the project name, the boilerplate, the output directory and which optional
-features you want to use.
 
 ## Options
 
-### Change output directory
+### Project name
 
-By default, the output directory is `build`. You can change it when the installer asks for it, or preset it by adding a
-third parameter to the call from above:
+Used as `name` in the `package.json`, e.g. `@namespace/project-name`.
 
-```sh
-npm init @ryze-digital/website@latest @namespace/project-name ../../public/dist
-```
+### Boilerplate
 
-_The path has to be relative to the folder in which you run the command and may only contain letters, numbers, `.`, `_`,
-`-` and `/`._
+Currently, `legacy` is the only one available. A new boilerplate is in development.
 
-#### Troubleshooting
+### Output directory
 
-If you use a path outside the folder in which you run the command, it can happen that the `pre-production` script throws
-the following error:
+The output path has to be relative to the folder in which you run the command.
 
-`Warning: Cannot delete files outside the current working directory. Use --force to continue.`
-
-To fix this, you can set `deleteOriginals` to `false` for the `cacheBust` task inside `Gruntfile.cjs`. Please note that
-in this case the unhashed build files will remain in the output directory.
+> [!NOTE]
+> With a path outside of this folder, the `pre-production` script may fail with
+> `Warning: Cannot delete files outside the current working directory. Use --force to continue.`
+> In this case, set `deleteOriginals` to `false` for the `cacheBust` task in `Gruntfile.cjs`. The unhashed build files
+> will then remain in the output directory.
 
 ### Lazysizes
 
@@ -64,5 +56,5 @@ Loglevel can be changed to see more detail output during installation. By defaul
 are `error`, `warn`, `info`, `verbose` and `silly`.
 
 ```sh
-npm init @ryze-digital/website@latest @namespace/project-name --loglevel error
+npm init @ryze-digital/website@latest --loglevel error
 ```
