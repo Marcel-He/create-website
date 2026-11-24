@@ -15,10 +15,10 @@ export class InteractiveUserInputs {
      */
 
     /**
-     * @param {string} defaultProjectName
+     * @param {string|undefined} defaultProjectName
      * @param {string} defaultOutputPath
      */
-    constructor(defaultProjectName = InteractiveUserInputs.#EXAMPLE_PROJECT_NAME, defaultOutputPath = "build") {
+    constructor(defaultProjectName, defaultOutputPath = "build") {
         this.defaultProjectName = defaultProjectName;
         this.defaultOutputPath = defaultOutputPath;
     }
@@ -56,10 +56,10 @@ export class InteractiveUserInputs {
      */
     #askProjectName() {
         return input({
-            message: "What should the project name be?",
+            message: `What should the project name be? (e.g. ${InteractiveUserInputs.#EXAMPLE_PROJECT_NAME})`,
             default: this.defaultProjectName,
             validate: (value) => {
-                if (value === InteractiveUserInputs.#EXAMPLE_PROJECT_NAME) {
+                if (value.trim() === "" || value === InteractiveUserInputs.#EXAMPLE_PROJECT_NAME) {
                     return "Please enter a proper project name";
                 }
 
